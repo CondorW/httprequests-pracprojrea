@@ -1,24 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./Components/Navbar";
+import { Fragment } from "react";
+import Films from "./Components/Films";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+        <Navbar></Navbar>
+        <div className="flex h-screen bg-slate-100 justify-center items-center">
+        <Films></Films>
+        </div>
+    </Fragment>
   );
 }
 
