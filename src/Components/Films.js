@@ -12,10 +12,10 @@ const Films = () => {
   console.log(filmDataState);
 
   return (
-    <div className="bg-lime-200 w-1/3 h-1/3 flex items-center justify-center flex-col">
+    <div className="bg-lime-200 w-3/4 rounded flex items-center justify-center flex-col mt-4">
       {filmDataState !== undefined
         ? filmDataState.results.map((film, index) => {
-            return <FilmCard key={index} title={film.title}></FilmCard>;
+            return <FilmCard key={index} title={film.title} crawl={film.opening_crawl}></FilmCard>;
           })
         : null}
       <FilmCard></FilmCard>

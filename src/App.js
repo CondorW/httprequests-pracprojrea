@@ -6,8 +6,8 @@ function App() {
   return (
     <Fragment>
         <Navbar></Navbar>
-        <div className="flex h-screen bg-slate-100 justify-center items-center">
-        <Films></Films>
+        <div className="flex min-h-screen bg-black justify-center">
+          <Films></Films>
         </div>
     </Fragment>
   );
