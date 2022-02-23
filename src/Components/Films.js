@@ -4,10 +4,10 @@ import FilmCard from "./FilmCard";
 const Films = () => {
   const [filmDataState, setFilmDataState] = useState();
 
-  const getFilmsHandler = () => {
-    fetch("https://swapi.dev/api/films/")
-      .then((response) => response.json())
-      .then((data) => setFilmDataState(data));
+  async function getFilmsHandler() {
+    const response = await fetch('https://swapi.dev/api/films/');
+    const data = await response.json();
+    setFilmDataState(data);
   };
   console.log(filmDataState);
 
