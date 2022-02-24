@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import FilmCard from "./FilmCard";
 
 const Films = () => {
@@ -6,9 +6,8 @@ const Films = () => {
   const [loadingState, setLoadingState] = useState();
   const [errorState, setErrorState] = useState(false);
 
-  async function getFilmsHandler() {
+  const getFilmsHandler = useCallback(async () => {
     setLoadingState(true);
-
     try {
       const response = await fetch("https://swapi.dev/api/films/");
       const data = await response.json();
@@ -17,7 +16,11 @@ const Films = () => {
     } catch (error) {
       setErrorState(error.message);
     }
-  }
+  },[]);
+
+  useEffect(() => {
+    getFilmsHandler();
+  }, [getFilmsHandler]);
 
   var toBeRendered = <p>Sorry we have no data - try fetching some movies</p>;
   if (errorState === false && filmDataState !== undefined) {
