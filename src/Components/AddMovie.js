@@ -17,7 +17,6 @@ export default function AddMovie() {
 
   async function submitHandler(event) {
         event.preventDefault();
-        console.log(process.env.REACT_APP_DBLINKMOVIES);
         const submittedMovie = {
             title: titleState,
             openingText: opentextState,
