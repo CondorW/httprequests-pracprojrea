@@ -9,14 +9,28 @@ const Films = () => {
   const getFilmsHandler = useCallback(async () => {
     setLoadingState(true);
     try {
-      const response = await fetch("https://swapi.dev/api/films/");
+      const response = await fetch(
+        "https://test-ac7f4-default-rtdb.europe-west1.firebasedatabase.app/movies.json",
+        { method: "GET", headers: { "Content-Type": "application/json" }, }
+      );
       const data = await response.json();
-      setFilmDataState(data);
+      console.log(data);
+
+      let filmArray = [];
+      for(const key in data){
+        filmArray.push({
+          key: key,
+          title: data[key].title,
+          crawl: data[key].openingText
+        })
+      }
+      console.log(filmArray);
+      setFilmDataState(filmArray);
       setLoadingState(false);
     } catch (error) {
       setErrorState(error.message);
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     getFilmsHandler();
@@ -24,12 +38,12 @@ const Films = () => {
 
   var toBeRendered = <p>Sorry we have no data - try fetching some movies</p>;
   if (errorState === false && filmDataState !== undefined) {
-    toBeRendered = filmDataState.results.map((film, index) => {
+    toBeRendered = filmDataState.map((film) => {
       return (
         <FilmCard
-          key={index}
+          key={film.key}
           title={film.title}
-          crawl={film.opening_crawl}
+          crawl={film.crawl}
         ></FilmCard>
       );
     });
