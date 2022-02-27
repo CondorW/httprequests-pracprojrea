@@ -10,7 +10,7 @@ const Films = () => {
     setLoadingState(true);
     try {
       const response = await fetch(
-        "https://test-ac7f4-default-rtdb.europe-west1.firebasedatabase.app/movies.json",
+        process.env.REACT_APP_DBLINKMOVIES,
         { method: "GET", headers: { "Content-Type": "application/json" }, }
       );
       const data = await response.json();
