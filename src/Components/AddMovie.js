@@ -1,13 +1,9 @@
 import { useState } from "react";
-import useCounter from "../hooks/use-counter";
 
 export default function AddMovie() {
   const [titleState, setTitleState] = useState();
   const [opentextState, setOpentextState] = useState();
   const [releaseState, setReleaseState] = useState();
-
-  const counterU = useCounter("UP");
-  const counterD = useCounter("DOWN");
 
   function titleInputHandler(event) {
     setTitleState(event.target.value);
@@ -36,12 +32,6 @@ export default function AddMovie() {
   return (
     <div className="bg-lime-200 w-3/4 rounded flex items-center justify-center flex-col mt-4 py-4">
       <h1>Submit your own Films</h1>
-      <div>
-        <p>Nice Counter</p>
-        {counterU}
-        <p>Also works backwards</p>
-        {counterD}
-      </div>
       <div>
         <form onSubmit={submitHandler} action="">
           <input
