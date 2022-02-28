@@ -1,9 +1,12 @@
 import { useState } from "react";
+import useHttp from "../hooks/use-http";
 
 export default function AddMovie() {
   const [titleState, setTitleState] = useState();
   const [opentextState, setOpentextState] = useState();
   const [releaseState, setReleaseState] = useState();
+
+  const [filmDataState, loadingState, errorState, filmsHandler] = useHttp(true)
 
   function titleInputHandler(event) {
     setTitleState(event.target.value);
@@ -15,18 +18,14 @@ export default function AddMovie() {
     setReleaseState(event.target.value);
   }
 
-  async function submitHandler(event) {
+  function submitHandler(event) {
     event.preventDefault();
-    const submittedMovie = {
+    var submittedMovie = {
       title: titleState,
       openingText: opentextState,
       releaseDate: releaseState,
     };
-    fetch(process.env.REACT_APP_DBLINKMOVIES, {
-      method: "POST",
-      body: JSON.stringify(submittedMovie),
-      headers: { "Content-Type": "application/json" },
-    });
+    filmsHandler(submittedMovie)
   }
 
   return (

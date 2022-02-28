@@ -5,7 +5,7 @@ function useHttp(postRequest) {
   const [loadingState, setLoadingState] = useState();
   const [errorState, setErrorState] = useState(false);
 
-  const filmsHandler = useCallback(async () => {
+  const filmsHandler = useCallback(async (submitData) => {
     if (postRequest === false) {
       setLoadingState(true);
       try {
@@ -32,7 +32,11 @@ function useHttp(postRequest) {
       }
     }
     else if (postRequest === true){
-        
+        fetch(process.env.REACT_APP_DBLINKMOVIES, {
+            method: "POST",
+            body: JSON.stringify(submitData),
+            headers: { "Content-Type": "application/json" },
+          });
     }
   }, [postRequest]);
   return [filmDataState, loadingState, errorState, filmsHandler];

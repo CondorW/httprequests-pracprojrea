@@ -3,11 +3,11 @@ import FilmCard from "./FilmCard";
 import useHttp from "../hooks/use-http";
 
 const Films = () => {
-  const [filmDataState, loadingState, errorState, getFilmsHandler] = useHttp();
+  const [filmDataState, loadingState, errorState, filmsHandler] = useHttp(false);
 
   useEffect(() => {
-    getFilmsHandler();
-  }, [getFilmsHandler]);
+    filmsHandler();
+  }, [filmsHandler]);
 
   var toBeRendered = <p>Sorry we have no data - try fetching some movies</p>;
   if (errorState === false && filmDataState !== undefined) {
@@ -31,7 +31,7 @@ const Films = () => {
   return (
     <div className="bg-lime-200 w-3/4 rounded flex items-center justify-center flex-col mt-4">
       {toBeRendered}
-      <button onClick={getFilmsHandler} className="block bg-lime-400">
+      <button onClick={filmsHandler} className="block bg-lime-400">
         Give me those sweet Film Suggestions
       </button>
     </div>
