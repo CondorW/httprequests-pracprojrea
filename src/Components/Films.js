@@ -31,7 +31,7 @@ const Films = () => {
   return (
     <div className="bg-lime-200 w-3/4 rounded flex items-center justify-center flex-col mt-4">
       {toBeRendered}
-      <button onClick={filmsHandler} className="block bg-lime-400">
+      <button onClick={filmsHandler} className="block bg-lime-400 my-2 rounded px-1">
         Give me those sweet Film Suggestions
       </button>
     </div>
