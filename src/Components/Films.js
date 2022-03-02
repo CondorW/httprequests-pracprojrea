@@ -3,7 +3,7 @@ import FilmCard from "./FilmCard";
 import useHttp from "../hooks/use-http";
 
 const Films = () => {
-  const [filmDataState, loadingState, errorState, filmsHandler] = useHttp(false);
+  const [filmDataState, loadingState, errorState, filmsHandler] = useHttp(false,process.env.REACT_APP_DBLINKMOVIES);
 
   useEffect(() => {
     filmsHandler();

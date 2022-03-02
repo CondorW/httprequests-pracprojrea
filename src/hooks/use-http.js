@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-function useHttp(postRequest) {
+function useHttp(postRequest,databaseUrl) {
   const [filmDataState, setFilmDataState] = useState();
   const [loadingState, setLoadingState] = useState();
   const [errorState, setErrorState] = useState(false);
@@ -9,7 +9,7 @@ function useHttp(postRequest) {
     if (postRequest === false) {
       setLoadingState(true);
       try {
-        const response = await fetch(process.env.REACT_APP_DBLINKMOVIES, {
+        const response = await fetch(databaseUrl, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });
@@ -32,7 +32,7 @@ function useHttp(postRequest) {
       }
     }
     else if (postRequest === true){
-        fetch(process.env.REACT_APP_DBLINKMOVIES, {
+        fetch(databaseUrl, {
             method: "POST",
             body: JSON.stringify(submitData),
             headers: { "Content-Type": "application/json" },

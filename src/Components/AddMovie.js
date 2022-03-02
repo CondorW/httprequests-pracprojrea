@@ -6,7 +6,7 @@ export default function AddMovie() {
   const [opentextState, setOpentextState] = useState();
   const [releaseState, setReleaseState] = useState();
 
-  const [filmDataState, loadingState, errorState, filmsHandler] = useHttp(true)
+  const [filmDataState, loadingState, errorState, filmsHandler] = useHttp(true,process.env.REACT_APP_DBLINKMOVIES)
 
   function titleInputHandler(event) {
     setTitleState(event.target.value);
